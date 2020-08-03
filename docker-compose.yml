@@ -9,13 +9,13 @@ services:
     depends_on: 
       - app
     volumes: 
-      - ./default.conf:/etc/nginx/conf.d/default.conf
-      - .:/var/www/html
+      - ./default.conf:/etc/nginx/conf.d/default.conf:delegated
+      - .:/var/www/html:delegated
   app:
     build: ./php
     container_name: php
     volumes: 
-      - .:/var/www/html
+      - .:/var/www/html:delegated
     depends_on: 
       - mysql
   mysql:

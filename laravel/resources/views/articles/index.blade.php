@@ -1,3 +1,9 @@
+@extends('app')
+
+@section('title', 'トップページ')
+
+@section('content')
+
 <h1>Hello World!!</h1>
 
 
@@ -9,6 +15,8 @@
     </div>
   @endforeach
 
+
+  @endsection
 
 <style>
 
@@ -24,4 +32,6 @@ h1 {
 }
 
 </style>
+
+
 
