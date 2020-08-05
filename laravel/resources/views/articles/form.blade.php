@@ -7,3 +7,5 @@
   <label></label>
   <textarea name="text" required class="form-control" rows="16" placeholder="本文">{{ $article->text ?? old('body') }}</textarea>
 </div>
+
+
