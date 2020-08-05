@@ -12,5 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+Route::get('/', 'ArticleController@index')->name('articles.index');
+Route::resource('/articles', 'ArticleController')->except(['index'])->middleware('auth');
 
-Route::get('/', 'ArticleController@index');
+Route::get('/home', 'HomeController@index')->name('home');
