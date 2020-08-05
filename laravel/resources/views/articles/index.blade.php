@@ -81,8 +81,11 @@
           </div>
           <!-- modal -->
         @endif
-    <div class="div">
-      <p>{{ $article->title }}</p>
+        <div class="div">
+        <a class="text-dark" href="{{ route('articles.show', ['article' => $article]) }}">
+        {{ $article->title }}
+        </a>
+  
       <p>{{ $article->text }}</p>
     </div>
   @endforeach
