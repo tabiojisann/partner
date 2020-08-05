@@ -12,6 +12,8 @@
           <div class="card-body text-center">
             <h2 class="h3 card-title text-center mt-2">ユーザー登録</h2>
 
+             @include('errors')
+
             <div class="card-text">
  
               <form method="POST" action="{{ route('register') }}">
