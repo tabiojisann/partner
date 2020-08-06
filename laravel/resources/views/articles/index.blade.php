@@ -5,7 +5,8 @@
 @section('content')
   @include('nav')
   @auth
-    <p class="ml-auto">あなたは<span class="text-default">{{ Auth::user()->name }}</span>です</p>
+    <p class="ml-auto">あなたは<span class="text-default">{{ $user->name }}</span>です</p>
+    <a href="{{ route('users.show', ['user' => $user]) }}">{{ $user->name }}</a>
   @endauth
   <div class="row blue-grey lighten-5">
     <div class="card border-light col-3 offset-1 my-5" style="max-height: 440px;">

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Article;
+use App\User;
 use App\Http\Requests\ArticleRequest;
 
 class ArticleController extends Controller
@@ -17,8 +19,8 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::all()->sortByDesc('created_at');
-
-        return view('articles.index', ['articles' => $articles]);
+        $user     = Auth::user();
+        return view('articles.index', ['articles' => $articles, 'user' => $user]);
     }
 
     public function create() 
