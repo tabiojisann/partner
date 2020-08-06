@@ -24,8 +24,10 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:5',
-            'text' => 'required|max:5',
+            'title' => 'required|max:100',
+            'text' => 'required|max:2000',
+            'position' => 'required',
+            'type' => 'required',
         ];
     }
 
@@ -34,6 +36,9 @@ class ArticleRequest extends FormRequest
         return [
             'title' => 'タイトル',
             'text'  => '本文',
+            'image' => '画像',
+            'position' => 'ポジション',
+            'type' => '形態',
         ];
     }
 }

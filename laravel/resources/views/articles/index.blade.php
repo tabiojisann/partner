@@ -5,9 +5,8 @@
 @section('content')
   @include('nav')
   @auth
-    <p>あなたは<span class="text-default">{{ Auth::user()->name }}</span>です</p>
+    <p class="ml-auto">あなたは<span class="text-default">{{ Auth::user()->name }}</span>です</p>
   @endauth
-  
   <div class="row blue-grey lighten-5">
     <div class="card border-light col-3 offset-1 mt-5" style="max-height: 440px;">
       <p class="card-header">検索</p>
@@ -48,23 +47,22 @@
           <div class="card-body">
             <h4 class="card-title">タイトル : {{ $article->title }}</h4>
             <p class="card-text">本文 : {{ $article->text }}</p>
+              @if( Auth::id() === $article->user_id )
+                <form method="POST" action="{{ route('articles.destroy', ['article' => $article]) }}">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn btn-danger">削除</button>
+                </form>
+              @endif
           </div>
         </div>
       @endforeach
     </div>
+  </div>
+
+  @include('footer')
 
 
-  
-  
-
-
-   
-
-
-
-    
-
-    
 
 @endsection
 
