@@ -1,103 +1,71 @@
 @extends('app')
 
-@section('title', 'トップページ')
+@section('title', 'Best Partner')
 
 @section('content')
-
-<nav class="navbar nabvar-expand-lg navbar-dark success-color">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  @guest
-    <a class="nav-link" href="{{ route('register') }}">ユーザー登録</a>
-    <a class="nav-link" href="{{ route('login') }}">ログイン</a>
-  @endguest 
-
-  @auth 
-    <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i>投稿する</a>
+  @include('nav')
+  @auth
+    <p>あなたは<span class="text-default">{{ Auth::user()->name }}</span>です</p>
   @endauth
 
-  @auth 
-        <button form="logout-button" class="dropdown-item" type="submit">
-          ログアウト
-        </button>
+  
+  <div class="row">
+    <div class="card border-light col-3 offset-1 mt-5" style="max-height: 440px;">
+      <p class="card-header">検索</p>
+      <div class="card-body">
+        <div class="custom-control custom-radio">
+          <input type="radio" class="custom-control-input" id="defaultGroupExample1" name="groupOfDefaultRadios">
+          <label class="custom-control-label" for="defaultGroupExample1">Option 1</label>
+        </div>
+
+        <div class="custom-control custom-radio">
+          <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios" checked>
+          <label class="custom-control-label" for="defaultGroupExample2">Option 2</label>
+        </div>
+
+       
+        <div class="custom-control custom-radio">
+          <input type="radio" class="custom-control-input" id="defaultGroupExample3" name="groupOfDefaultRadios">
+          <label class="custom-control-label" for="defaultGroupExample3">Option 3</label>
+        </div>
+
+        <form class="form-inline mr-auto mt-5">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn blue-gradient btn-rounded btn-sm my-0" type="submit">Search</button>
+        </form>
       </div>
-    <form id="logout-button" method="POST" action="{{ route('logout') }}"> 
-      @csrf 
-    </form>
-  @endauth 
-
-</nav>
-
-  @foreach($articles as $article)
-
-  @if( Auth::id() === $article->user_id )
-          <!-- dropdown -->
-          <div class="ml-auto card-text">
-            <div class="dropdown">
-              <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <button type="button" class="btn btn-link text-muted m-0 p-2">
-                  <i class="fas fa-ellipsis-v"></i>
-                </button>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="{{ route("articles.edit", ['article' => $article]) }}">
-                  <i class="fas fa-pen mr-1"></i>記事を更新する
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-danger" data-toggle="modal" data-target="#modal-delete-{{ $article->id }}">
-                  <i class="fas fa-trash-alt mr-1"></i>記事を削除する
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- dropdown -->
-  
-          <!-- modal -->
-          <div id="modal-delete-{{ $article->id }}" class="modal fade" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <form method="POST" action="{{ route('articles.destroy', ['article' => $article]) }}">
-                  @csrf
-                  @method('DELETE')
-                  <div class="modal-body">
-                    {{ $article->title }}を削除します。よろしいですか？
-                  </div>
-                  <div class="modal-footer justify-content-between">
-                    <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
-                    <button type="submit" class="btn btn-danger">削除する</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <!-- modal -->
-        @endif
-        <div class="div">
-        <a class="text-dark" href="{{ route('articles.show', ['article' => $article]) }}">
-        {{ $article->title }}
-        </a>
-  
-      <p>{{ $article->text }}</p>
     </div>
-  @endforeach
 
 
-<style>
-  .container {
-    background-color: #f99;
-  }
-</style>
+    <div class="col-6 offset-1">
+      @foreach($articles as $article)
+        <div class="card mt-5">
+          <div class="view overlay">
+            <img class="card-img-top" src="https://picsum.photos/500/200" alt="Card image cap">
+            <a href="#!">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">タイトル : {{ $article->title }}</h4>
+            <p class="card-text">本文 : {{ $article->text }}</p>
+          </div>
+        </div>
+      @endforeach
+    </div>
+  
 
- @endsection
+
+   
+
+
+
+    
+
+    
+
+@endsection
+
 
 
 
