@@ -3,7 +3,7 @@
 @section('title', '記事詳細')
 
 @section('content')
-
+  @include('nav')
   <div class="container">
 
   <div class="div">
@@ -13,6 +13,7 @@
 
 
   </div>
+  @include('footer')
 @endsection
 
 

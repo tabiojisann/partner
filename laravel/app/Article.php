@@ -12,7 +12,7 @@ class Article extends Model
         'title',
         'text',
         'position',
-        'type',
+        'style',
         'image',
     ];
 

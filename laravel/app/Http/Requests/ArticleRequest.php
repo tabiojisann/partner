@@ -27,7 +27,7 @@ class ArticleRequest extends FormRequest
             'title' => 'required|max:100',
             'text' => 'required|max:2000',
             'position' => 'required',
-            'type' => 'required',
+            'style' => 'required',
         ];
     }
 
@@ -38,7 +38,7 @@ class ArticleRequest extends FormRequest
             'text'  => '本文',
             'image' => '画像',
             'position' => 'ポジション',
-            'type' => '形態',
+            'style' => 'スタイル',
         ];
     }
 }
