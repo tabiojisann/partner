@@ -2,7 +2,7 @@
  
   <div class="row">
     <a class="navbar-brand offset-2" href="/">
-      <img src="https://s3.amazonaws.com/lg-vectors/bitmaps/206127/721602.png?logo_version=0" width="70" border="0" class="horizontal">
+      <img src="https://s3.amazonaws.com/lg-vectors/bitmaps/206127/721602.png?logo_version=0" width="100" border="0" class="horizontal">
     </a>
   </div>
 
