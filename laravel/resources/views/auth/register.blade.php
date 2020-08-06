@@ -4,48 +4,57 @@
 @section('title', 'ユーザー登録')
 
 @section('content')
-  <div class="container">
+  <a class="navbar-brand" href="/">
+    <img src="https://s3.amazonaws.com/lg-vectors/bitmaps/206127/721602.png?logo_version=0" width="100" border="0" class="horizontal">
+  </a>
+  <div class="container" style="margin-top: 50px;">
     <div class="row">
       <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
-        <h1 class="text-center"><a class="text-dark" href="/">memo</a></h1>
-        <div class="card mt-3">
-          <div class="card-body text-center">
-            <h2 class="h3 card-title text-center mt-2">ユーザー登録</h2>
-
-             @include('errors')
-
-            <div class="card-text">
- 
-              <form method="POST" action="{{ route('register') }}">
-                @csrf
-                <div class="md-form">
-                  <label for="name">ユーザー名</label>
-                  <input class="form-control" type="text" id="name" name="name" required value="{{ old('name') }}">
-                  <small>英数字3〜16文字(登録後の変更はできません)</small>
-                </div>
-                <div class="md-form">
-                  <label for="email">メールアドレス</label>
-                  <input class="form-control" type="text" id="email" name="email" required value="{{ old('email') }}" >
-                </div>
-                <div class="md-form">
-                  <label for="password">パスワード</label>
-                  <input class="form-control" type="password" id="password" name="password" required>
-                </div>
-                <div class="md-form">
-                  <label for="password_confirmation">パスワード(確認)</label>
-                  <input class="form-control" type="password" id="password_confirmation" name="password_confirmation" required>
-                </div>
-                <button class="btn btn-block blue-gradient mt-2 mb-2" type="submit">ユーザー登録</button>
-              </form>
-
-
-              <div class="mt-0">
-                <a href="{{ route('login') }}" class="card-text">ログインはこちら</a>
+        <div class="card mx-xl-5 grey lighten-5">
+        
+          <div class="card-body">
+      
+            <p class="h4 text-center border-bottom py-4">新規登録</p>
+              @include('errors')
+            <form method="POST" action="{{ route('register') }}">
+              @csrf
+              <div class="md-form">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input type="text" id="name" name="name" class="form-control" required>
+                <label for="name" class="font-weight-light">ユーザー名</label>
               </div>
-              
+
+            
+              <div class="md-form">
+                <i class="fa fa-envelope prefix grey-text"></i>
+                <input type="email" id="email" name="email" class="form-control" required>
+                <label for="email" class="font-weight-light">メールアドレス</label>
+              </div>
+
+
+              <div class="md-form">
+                <i class="fa fa-lock prefix grey-text"></i>
+                <input type="password" id="password" name="password" class="form-control" required>
+                <label for="password" class="font-weight-light">パスワード</label>
+              </div>
+
+              <div class="md-form">
+                <i class="fa fa-exclamation-triangle  prefix grey-text"></i>
+                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
+                <label for="password_confirmation" class="font-weight-light">パスワード(確認)</label>
+              </div>
+
+              <div class="text-center py-4 mt-3">
+                <button class="btn btn-info" type="submit">登録</button>
+              </div>
+            </form>
+
+            <div class="mt-0 text-center">
+                <a href="{{ route('login') }}" class="text-success">ログインはこちら</a>
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>

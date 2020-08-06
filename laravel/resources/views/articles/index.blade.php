@@ -7,9 +7,8 @@
   @auth
     <p>あなたは<span class="text-default">{{ Auth::user()->name }}</span>です</p>
   @endauth
-
   
-  <div class="row">
+  <div class="row blue-grey lighten-5">
     <div class="card border-light col-3 offset-1 mt-5" style="max-height: 440px;">
       <p class="card-header">検索</p>
       <div class="card-body">
@@ -53,6 +52,9 @@
         </div>
       @endforeach
     </div>
+
+
+  
   
 
 
