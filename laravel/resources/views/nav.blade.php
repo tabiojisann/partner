@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark">
+<nav class="navbar navbar-dark blue-grey light-5">
  
   <div class="row">
     <a class="navbar-brand offset-2" href="/">

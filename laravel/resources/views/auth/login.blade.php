@@ -7,7 +7,7 @@
   <a class="navbar-brand" href="/">
     <img src="https://s3.amazonaws.com/lg-vectors/bitmaps/206127/721602.png?logo_version=0" width="100" border="0" class="horizontal">
   </a>
-  <div class="container">
+  <div class="container pb-5">
     <div class="row">
       <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
         <section class="form-simple">
@@ -60,4 +60,5 @@
       </div>
     </div>
   </div>
+  @include('footer')
 @endsection

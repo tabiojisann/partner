@@ -5,11 +5,11 @@
 @section('content')
   @include('nav')
   @auth
-    <p>あなたは<span class="text-default">{{ Auth::user()->name }}</span>です</p>
+    <p class="ml-auto">あなたは<span class="text-default">{{ $user->name }}</span>です</p>
+    <a href="{{ route('users.show', ['user' => $user]) }}">{{ $user->name }}</a>
   @endauth
-  
   <div class="row blue-grey lighten-5">
-    <div class="card border-light col-3 offset-1 mt-5" style="max-height: 440px;">
+    <div class="card border-light col-3 offset-1 my-5" style="max-height: 440px;">
       <p class="card-header">検索</p>
       <div class="card-body">
         <div class="custom-control custom-radio">
@@ -36,35 +36,53 @@
     </div>
 
 
-    <div class="col-6 offset-1">
+    <div class="col-6 offset-1 pb-5">
       @foreach($articles as $article)
         <div class="card mt-5">
+
           <div class="view overlay">
             <img class="card-img-top" src="https://picsum.photos/500/200" alt="Card image cap">
-            <a href="#!">
+            <a href="{{ route('articles.show', ['article' => $article]) }}">
               <div class="mask rgba-white-slight"></div>
             </a>
           </div>
+
           <div class="card-body">
-            <h4 class="card-title">タイトル : {{ $article->title }}</h4>
-            <p class="card-text">本文 : {{ $article->text }}</p>
+
+            <h3 class="card-title">{{ $article->title }}</h3>
+
+            <table class="table  table-bordered table-hover">
+              <tr>
+                <th class=>ポジション</th>
+                <th>{{ $article->position }}</th>
+              </tr>
+              <tr>
+                <th class="">スタイル</th>
+                <th>{{ $article->style }}</th>
+              </tr>
+            </table>
+
+            <p class="card-text">{{ $article->text }}</p>
+
+              @if( Auth::id() === $article->user_id )
+                <form method="POST" action="{{ route('articles.destroy', ['article' => $article]) }}">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn btn-danger">削除</button>
+                </form>
+                <a href="{{ route('articles.edit', ['article' => $article]) }}" class="btn btn-primary">編集</a>
+
+              @endif
+
           </div>
         </div>
       @endforeach
     </div>
+  </div>
+
+  @include('footer')
 
 
-  
-  
-
-
-   
-
-
-
-    
-
-    
 
 @endsection
 

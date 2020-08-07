@@ -11,6 +11,9 @@ class Article extends Model
     protected $fillable = [
         'title',
         'text',
+        'position',
+        'style',
+        'image',
     ];
 
     public function user(): BelongsTo
