@@ -17,8 +17,10 @@ Route::get('/', 'ArticleController@index')->name('articles.index');
 Route::resource('/articles', 'ArticleController')->except(['index', 'show'])->middleware('auth');
 Route::resource('/articles', 'ArticleController')->only(['show']);
 
-Route::prefix('users')->name('users.')->group(function() {
-  Route::get()->name('/{name}', 'UserController@show')->name('show');
-});
+// Route::prefix('users')->name('users.')->group(function() {
+//   Route::get()->name('/{name}', 'UserController@show')->name('show');
+// });
+
+Route::resource('/users', 'UserController')->except(['create', 'store', 'destroy']);
 
 Route::get('/home', 'HomeController@index')->name('home');
