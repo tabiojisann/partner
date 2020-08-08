@@ -12,7 +12,10 @@
 
 
         <div class="col-5 offset-1">
-          <img src="https://picsum.photos/500/500" alt="">
+          <div class="view overlay">
+            <img class="card-img-top" src="{{ $user->image }}" alt="Card image cap">
+            <div class="mask rgba-white-slight"></div>
+          </div>
         </div>
 
         <div class="col-4 offset-1">

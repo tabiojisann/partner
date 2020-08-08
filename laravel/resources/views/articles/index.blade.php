@@ -35,13 +35,18 @@
       </div>
     </div>
 
+<div class="block">
+  <img src="https://yuruoji-partner-s3.s3.ap-northeast-1.amazonaws.com/https%3A//yuruoji-partner-s3.s3.ap-northeast-1.amazonaws.com/articles/FlE7GdetyCKr3Rz5E0MHPrmJaV11mxfE1fHfp8Y5.jpeg" alt="">
+</div>
+
 
     <div class="col-6 offset-1 pb-5">
       @foreach($articles as $article)
         <div class="card mt-5">
 
+
           <div class="view overlay">
-            <img class="card-img-top" src="https://picsum.photos/500/200" alt="Card image cap">
+            <img class="card-img-top" src="{{ $article->image }}" alt="Card image cap">
             <a href="{{ route('articles.show', ['article' => $article]) }}">
               <div class="mask rgba-white-slight"></div>
             </a>
