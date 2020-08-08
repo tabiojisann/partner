@@ -141,7 +141,7 @@
 
 <div class="md-form mt-5 pb-5">
   <strong>イメージ画像(任意)</strong>
-  <input type="file" name="image" class="form-control" >
+  <input type="file" name="image" class="form-control">
 </div>
 
 <div class="form-group shadow-textarea mt-5 pb-5">

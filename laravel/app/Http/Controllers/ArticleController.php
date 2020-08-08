@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Article;
 use App\User;
+use Storage;
 use App\Http\Requests\ArticleRequest;
 
 class ArticleController extends Controller
@@ -31,7 +32,16 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request, Article $article)
     {
         $article->fill($request->all());
-        $article->user_id = $request->user()->id;  
+
+        $image = $request->file('image');
+        // $filename = $image->getClientOriginalName();
+
+        $path = Storage::disk('s3')->putFile('articles', $image, 'public');
+        $article->image = Storage::disk('s3')->url($path);
+
+
+        $article->user_id = $request->user()->id; 
+
         $article->save();  
 
         return redirect()->route('articles.index');
@@ -44,13 +54,28 @@ class ArticleController extends Controller
 
     public function update(ArticleRequest $request, Article $article)
     {
-        $article->fill($request->all())->save();
+        $article->fill($request->all());
+        
+        $image = $request->file('image');
+        $path = Storage::disk('s3')->putFile('articles', $image, 'public');
+        $article->image = Storage::disk('s3')->url($path);
+  
+        
+        $article->save();
         return redirect()->route('articles.index');
     }
 
     public function destroy(Article $article)
     {
+
+        $url = Storage::disk('s3')->url($article->image);
+
+        // dd($url);
+
+        Storage::delete($url);
+       
         $article->delete();
+
         return redirect()->route('articles.index');
     }
 
@@ -60,3 +85,4 @@ class ArticleController extends Controller
     }
 
 }
+

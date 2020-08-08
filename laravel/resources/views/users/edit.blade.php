@@ -11,9 +11,14 @@
     <div class="row">
       <div class="col-6 offset-3">
 
-        <form method="POST" action="{{ route('users.update', ['user' => $user]) }}">
+        <form method="POST" action="{{ route('users.update', ['user' => $user]) }}" enctype="multipart/form-data">
           @method('PATCH')
           @csrf
+
+          <div class="md-form mt-5 pb-5">
+            <strong>アイコン</strong>
+            <input type="file" name="image" class="form-control">
+          </div>
 
           <div class="md-form">
             <strong>ニックネーム</strong>
@@ -56,8 +61,6 @@
 
           <br>
           <br>
-
-          {{Form::select('age', ['Under 18', '19 to 30', 'Over 30'])}}
           
           <div class="md-form">
             <strong>生年月日</strong>

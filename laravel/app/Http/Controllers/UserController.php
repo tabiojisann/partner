@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Storage;
 use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
@@ -22,9 +23,15 @@ class UserController extends Controller
         ]);
      }
 
-     public function update(Request $request, User $user)
+     public function update(UserRequest $request, User $user)
      {
-         $user->fill($request->all())->save();
+         $user->fill($request->all());  
+
+         $image = $request->file('image');
+         $path = Storage::disk('s3')->putFile('users', $image, 'public');
+         $user->image = Storage::disk('s3')->url($path);
+
+         $user->save();
 
          return view('users.show', ['user' => $user]);
      }
