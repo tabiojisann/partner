@@ -35,11 +35,6 @@
       </div>
     </div>
 
-<div class="block">
-  <img src="https://yuruoji-partner-s3.s3.ap-northeast-1.amazonaws.com/https%3A//yuruoji-partner-s3.s3.ap-northeast-1.amazonaws.com/articles/FlE7GdetyCKr3Rz5E0MHPrmJaV11mxfE1fHfp8Y5.jpeg" alt="">
-</div>
-
-
     <div class="col-6 offset-1 pb-5">
       @foreach($articles as $article)
         <div class="card mt-5">

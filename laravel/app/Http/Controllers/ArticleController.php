@@ -33,12 +33,11 @@ class ArticleController extends Controller
     {
         $article->fill($request->all());
 
-        $image = $request->file('image');
-        // $filename = $image->getClientOriginalName();
-
-        $path = Storage::disk('s3')->putFile('articles', $image, 'public');
-        $article->image = Storage::disk('s3')->url($path);
-
+        if(isset($image)) {
+            $image = $request->file('image');
+            $path = Storage::disk('s3')->putFile('articles', $image, 'public');
+            $article->image = Storage::disk('s3')->url($path);
+        }
 
         $article->user_id = $request->user()->id; 
 
@@ -56,10 +55,13 @@ class ArticleController extends Controller
     {
         $article->fill($request->all());
         
-        $image = $request->file('image');
-        $path = Storage::disk('s3')->putFile('articles', $image, 'public');
-        $article->image = Storage::disk('s3')->url($path);
-  
+        if(isset($image)) {
+            $image = $request->file('image');
+            $path = Storage::disk('s3')->putFile('articles', $image, 'public');
+            $article->image = Storage::disk('s3')->url($path);
+      
+        }
+     
         
         $article->save();
         return redirect()->route('articles.index');
