@@ -13,7 +13,9 @@
 
         <div class="col-5 offset-1">
           <div class="view overlay">
-            <img class="card-img-top" src="{{ $user->image }}" alt="Card image cap">
+            @if(isset($user->image))
+              <img class="card-img-top" src="{{ $user->image }}" alt="Card image cap">
+            @endif
             <div class="mask rgba-white-slight"></div>
           </div>
         </div>

@@ -28,9 +28,12 @@ class UserController extends Controller
         $user->fill($request->all());  
 
         $image = $request->file('image');
-        $fileName = ($image)->getClientOriginalName();
-        $path = Storage::disk('s3')->putFileAs('users', $image, $fileName);
-        $user->image = Storage::disk('s3')->url($path);
+
+        if(isset($image)){
+            $fileName = ($image)->getClientOriginalName();
+            $path = Storage::disk('s3')->putFileAs('users', $image, $fileName, 'public');
+            $user->image = Storage::disk('s3')->url($path);
+        }
 
          $user->save();
 

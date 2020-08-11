@@ -41,8 +41,6 @@ class ArticleController extends Controller
             $path = Storage::disk('s3')->putFileAs('articles', $image, $fileName, 'public');
             $article->image = Storage::disk('s3')->url($path);
         }
-
-        // dd($article->image);
      
         $article->user_id = $request->user()->id; 
 
@@ -58,13 +56,17 @@ class ArticleController extends Controller
 
     public function update(ArticleRequest $request, Article $article)
     {
+
+        // dd($article);
+
         $article->fill($request->all());
-        
-        if(isset($image)) {
-            $image = $request->file('image');
-            $path = Storage::disk('s3')->putFile('articles', $image,  'public');
+
+        $image = $request->file('image');
+
+        if(isset($image)){
+            $fileName = ($image)->getClientOriginalName();
+            $path = Storage::disk('s3')->putFileAs('articles', $image, $fileName, 'public');
             $article->image = Storage::disk('s3')->url($path);
-      
         }
      
         
@@ -75,12 +77,6 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
 
-        $url = Storage::disk('s3')->url($article->image);
-
-        // dd($url);
-
-        Storage::delete($url);
-       
         $article->delete();
 
         return redirect()->route('articles.index');
