@@ -41,7 +41,9 @@
 
 
           <div class="view overlay">
-            <img class="card-img-top" src="{{ $article->image }}" alt="Card image cap">
+            @if(isset($article->image))
+              <img class="card-img-top" src="{{ $article->image }}" alt="Card image cap">
+            @endif
             <a href="{{ route('articles.show', ['article' => $article]) }}">
               <div class="mask rgba-white-slight"></div>
             </a>

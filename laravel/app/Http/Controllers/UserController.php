@@ -25,11 +25,12 @@ class UserController extends Controller
 
      public function update(UserRequest $request, User $user)
      {
-         $user->fill($request->all());  
+        $user->fill($request->all());  
 
-         $image = $request->file('image');
-         $path = Storage::disk('s3')->putFile('users', $image, 'public');
-         $user->image = Storage::disk('s3')->url($path);
+        $image = $request->file('image');
+        $fileName = ($image)->getClientOriginalName();
+        $path = Storage::disk('s3')->putFileAs('users', $image, $fileName);
+        $user->image = Storage::disk('s3')->url($path);
 
          $user->save();
 
