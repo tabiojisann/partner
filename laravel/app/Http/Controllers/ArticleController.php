@@ -57,8 +57,6 @@ class ArticleController extends Controller
     public function update(ArticleRequest $request, Article $article)
     {
 
-        // dd($article);
-
         $article->fill($request->all());
 
         $image = $request->file('image');
