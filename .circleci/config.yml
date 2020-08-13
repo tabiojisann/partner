@@ -1,8 +1,22 @@
 version: 2
 jobs:
-  build:
-    docker:
-      - image: circleci/ruby:2.4.1
-    steps:
+  one:
+    docker: 
+      - image: circleci/php:7.3-node-browsers
+    steps: 
       - checkout
-      - run: echo "A first hello"
+      - run: echo "first"
+      - run: sleep 10
+  two:
+    docker:
+      - image: circleci/php:7.3-node-browsers
+     steps: 
+      - checkout
+      - run: echo "second"
+      - run: sleep 12
+workflows:
+  version: 2
+  one_two:
+    jobs:
+      - one
+      - two
