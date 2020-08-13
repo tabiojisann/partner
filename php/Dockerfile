@@ -6,6 +6,7 @@ RUN apt-get update \
   && apt-get install -y gnupg 
 
 RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
+RUN curl -fLSs https://circle.ci/cli | bash
 
 
 RUN apt-get install -y \
