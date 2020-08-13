@@ -1,25 +1,8 @@
-version: 2.1
-jobs:
-  deploy:
-    docker:
-      - image: circleci/php:7.3-node-browsers
-    steps:
-      - add_ssh_keys
-      - run:
-        name: deploy
-        command: |
-          ssh -o StrictHostKeyChecking=no -t ojisan@${HOST_NAME} "cd partner && \
-            git pull origin master && \
-            composer install -n --no-dev --prefer-dist && \
-            npm ci && npm run dev && \
-            php artisan migrate --force && \
-            php artisan config:cache"  
-workflows:
-  version: 2
-  deploy:
-    jobs:
-      - deploy:
-        filters:
-          branches:
-            only:
-              - master
+version: 2
+ jobs:
+   build:
+     docker:
+       - image: circleci/ruby:2.4.1
+     steps:
+       - checkout
+       - run: echo "A first hello"
