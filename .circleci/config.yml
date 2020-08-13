@@ -2,7 +2,7 @@ version: 2.1
 jobs: 
   build: 
     docker:
-      - image: alpine:3.7
+      - image: node:10-browsers
     steps:
       - checkout
       - run:
@@ -15,4 +15,8 @@ jobs:
           command: |
             ls -al
             echo '^^^That should look familiar^^^'
+      - run:
+          name: 独自コンテナで実行
+          command: |
+            node -v
 
