@@ -1,22 +1,61 @@
 version: 2.1 
 jobs: 
-  build: 
+  Hello-World: 
     docker:
-      - image: circleci/node:10-browsers
+      - image: alpine:3.7
     steps:
-      - checkout
       - run:
-          name: 最初のステップ
+          name: Hello World
           command: |
             echo 'Hello World'
             echo 'This is a pen!'
-      - run:
-          name: コードの取得
-          command: |
-            ls -al
-            echo '^^^That should look familiar^^^'
-      - run:
-          name: 独自コンテナで実行
-          command: |
-            node -v
+
+  I-Have-Code: 
+    docker: 
+      - image: alpine:3.7 
+    steps: 
+      - checkout 
+      - run: 
+          name: コードの取得 
+          command: | 
+            ls -al echo '^^^That should look familiar^^^'
+
+  Run-With-Node: 
+    docker: 
+      - image: circleci/node:10-browsers 
+    steps: 
+      - run: 
+          name: ノードを持つコンテナでの実行 
+          command: | 
+            node -v 
+        
+  Now-Complete: 
+    docker: 
+      - image: alpine:3.7 
+    steps: 
+      - run: 
+          name: 承認の完了 
+          command: | 
+            echo 'Do work once the approval has completed'
+
+workflows: 
+  version: 2 
+  Example_Workflow:
+    jobs:
+      - Hello-World
+      - I-Have-Code:
+          requires:
+            - Hello-World
+      - Run-With-Node:
+          requires:
+            - Hello-World
+      - Hold-For-Approval:
+          type: approval
+          requires:
+            - Run-With-Node
+            - I-Have-Code
+      - Now-Complete:
+          requires:
+            - Hold-For-Approval
+          
 
