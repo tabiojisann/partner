@@ -8,7 +8,7 @@ jobs:
           name: Hello World
           command: |
             echo 'Hello World'
-            echo 'This is a pen!'
+            echo 'This is the delivery pipeline'
 
   I-Have-Code: 
     docker: 
@@ -18,7 +18,8 @@ jobs:
       - run: 
           name: コードの取得 
           command: | 
-            ls -al echo '^^^That should look familiar^^^'
+            ls -al 
+            echo '^^^That should look familiar^^^'
 
   Run-With-Node: 
     docker: 
