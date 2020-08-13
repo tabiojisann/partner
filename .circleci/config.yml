@@ -1,40 +1,15 @@
-version: 2
-jobs:
-  one:
-    docker:
-      - image: circleci/ruby:2.4.1
-    steps:
-      - checkout
-      - run: echo "A first hello"
-      - run: mkdir -p my_workspace
-      - run: echo "Trying out workspaces" > my_workspace/echo-output
-      - persist_to_workspace:
-          # 絶対パスまたは working_directory からの相対パスでなければなりません
-          root: my_workspace
-          # ルートからの相対パスでなければなりません
-          paths:
-            - echo-output
-  two:
-    docker:
-      - image: circleci/ruby:2.4.1
-    steps:
-      - checkout
-      - run: echo "A more familiar hi"
-      - attach_workspace:
-          # 絶対パスであるか、working_directory からの相対パスでなければなりません
-          at: my_workspace
+version: 2.1
 
-      - run: |
-          if [[ $(cat my_workspace/echo-output) == "Trying out workspaces" ]]; then
-            echo "It worked!";
-          else
-            echo "Nope!"; exit 1
-          fi
+orbs: 
+  aws-s3: circleci/aws-s3@1.0.0
+
 workflows:
-  version: 2
-  one_and_two:
+  build_test_deploy:
     jobs:
-      - one
-      - two:
-          requires:
-            - one
+      - deploy2s3:
+        steps:
+          - aws-s3/sync:
+            from: .
+            to: "s3://yuruoji-partner-s3"
+            overwrite: true
+  
