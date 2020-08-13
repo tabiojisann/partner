@@ -4,9 +4,15 @@ jobs:
     docker:
       - image: alpine:3.7
     steps:
+      - checkout
       - run:
           name: 最初のステップ
           command: |
             echo 'Hello World'
             echo 'This is a pen!'
+      - run:
+          name: コードの取得
+          command: |
+            ls -al
+            echo '^^^That should look familiar^^^'
 
