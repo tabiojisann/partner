@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark blue-grey light-5">
+<nav class="navbar navbar-dark  grey lighten-5">
  
   <div class="row">
     <a class="navbar-brand offset-2" href="/">
@@ -9,13 +9,13 @@
   @guest
     <div class="row">
       <a href="{{ route('register') }}" class="nav-link ">
-        <button type="button" class="btn btn-outline-info waves-effect">
-          <span class="text-primary">会員登録</span>
+        <button type="button" class="btn btn-outline-white waves-effect">
+          <span class="text-success">会員登録</span>
         </button>
       </a>
       <a href="{{ route('login') }}" class="nav-link ">
-        <button type="button" class="btn btn-outline-info waves-effect">
-          <span class="text-primary">ログイン</span>
+        <button type="button" class="btn btn-outline-white waves-effect">
+          <span class="text-success">ログイン</span>
         </button>
       </a>
     </div>

@@ -134,7 +134,7 @@
 </div>
 
 <template>
-  <div class="input-group">
+  <div class="input-group mt-5 pb-5">
     <div class="input-group-prepend">
       <span class="input-group-text" id="image">イメージ画像</span>
     </div>
@@ -157,7 +157,6 @@
   <strong class="text-danger">必須</strong>
   <textarea name="text" required class="form-control z-depth-2" rows="16" placeholder="2000文字まで打てます">{{ $article->text ?? old('text') }}</textarea>
 </div>
-
 
 
 

@@ -15,10 +15,23 @@
           @method('PATCH')
           @csrf
 
-          <div class="md-form mt-5 pb-5">
-            <strong>アイコン</strong>
-            <input type="file" name="image" class="form-control">
-          </div>
+        
+            <!-- <strong>アイコン</strong>
+            <input type="file" name="image" class="form-control"> -->
+            <template>
+              <div class="input-group mt-5 pb-5">
+             
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="image">アイコン</span>
+                </div>
+                
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" name="image" id="image" aria-describedby="image-area">
+                  <label class="custom-file-label" for="image">任意で選択してください</label>
+                </div>
+              </div>
+            </template>
+
 
           <div class="md-form">
             <strong>ニックネーム</strong>

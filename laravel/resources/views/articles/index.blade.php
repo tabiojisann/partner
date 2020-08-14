@@ -8,6 +8,19 @@
     <p class="ml-auto">あなたは<span class="text-default">{{ $user->name }}</span>です</p>
     <a href="{{ route('users.show', ['user' => $user]) }}">{{ $user->name }}</a>
   @endauth
+  @guest
+    <div class="text-center peach-gradient" style="height: 500px;">
+      <img src="https://s3.amazonaws.com/lg-vectors/bitmaps/206127/721602.png?logo_version=0" width="500" border="0" class="horizontal animated fadeInRight slow">
+      <h1 class="text-white mt-5 animated fadeInLeft slower">俺とコンビ組まない?</h1>
+      <a href="{{ route('register') }}">
+        <h2 class="text-success mt-4 animated fadeIn delay-4s">はい</h2>
+      </a>
+    </div>
+  @endguest
+  
+
+ 
+
   <div class="row blue-grey lighten-5">
     <div class="card border-light col-3 offset-1 my-5" style="max-height: 440px;">
       <p class="card-header">検索</p>
@@ -37,7 +50,7 @@
 
     <div class="col-6 offset-1 pb-5">
       @foreach($articles as $article)
-        <div class="card mt-5">
+        <div class="card mt-5 animated fadeIn">
 
 
           <div class="view overlay">

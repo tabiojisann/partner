@@ -11,10 +11,9 @@
           <div class="card mt-3">
             <div class="card-body pt-0">
               <div class="view overlay">
-                <img class="card-img-top" src="https://picsum.photos/500/200" alt="Card image cap">
-                  <a href="{{ route('articles.show', ['article' => $article]) }}">
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
+                @if(isset($article->image))
+                  <img class="card-img-top" src="{{ $article->image }}" alt="Card image cap">
+                @endif
               </div>
               <h1>{{ $article->title }}</h1>
 

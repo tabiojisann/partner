@@ -14,7 +14,7 @@
         <div class="col-5 offset-1">
           <div class="view overlay">
             @if(isset($user->image))
-              <img class="card-img-top" src="{{ $user->image }}" alt="Card image cap">
+              <img class="card-img-top" src="{{ $user->image }}" alt="">
             @endif
             <div class="mask rgba-white-slight"></div>
           </div>
@@ -120,6 +120,7 @@
     </div> 
   @include('footer')
 @endsection
+
 
 
 
