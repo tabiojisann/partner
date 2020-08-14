@@ -56,7 +56,7 @@ class ArticleController extends Controller
 
     public function update(ArticleRequest $request, Article $article)
     {
-
+        
         $article->fill($request->all());
 
         $image = $request->file('image');
@@ -67,14 +67,13 @@ class ArticleController extends Controller
             $article->image = Storage::disk('s3')->url($path);
         }
      
-        
         $article->save();
         return redirect()->route('articles.index');
     }
 
     public function destroy(Article $article)
     {
-
+     
         $article->delete();
 
         return redirect()->route('articles.index');

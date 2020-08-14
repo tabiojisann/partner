@@ -133,22 +133,34 @@
 
 </div>
 
+<template>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="image">イメージ画像</span>
+    </div>
+    <div class="custom-file">
+      <input type="file" class="custom-file-input" name="image" id="image" aria-describedby="image-area">
+      <label class="custom-file-label" for="image">任意で選択してください</label>
+    </div>
+  </div>
+</template>
+
 <div class="md-form mt-5 pb-5">
   <strong>タイトル</strong>
   <strong class="text-danger">必須</strong>
   <input type="title" name="title" class="form-control" placeholder="100文字以内" required value="{{ $article->title ?? old('title') }}">
 </div>
 
-<div class="md-form mt-5 pb-5">
-  <strong>イメージ画像(任意)</strong>
-  <input type="file" name="image" class="form-control" value="{{ old('image') }}">
-</div>
 
 <div class="form-group shadow-textarea mt-5 pb-5">
   <strong>本文</strong>
   <strong class="text-danger">必須</strong>
   <textarea name="text" required class="form-control z-depth-2" rows="16" placeholder="2000文字まで打てます">{{ $article->text ?? old('text') }}</textarea>
 </div>
+
+
+
+
 
 
 
