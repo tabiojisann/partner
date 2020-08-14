@@ -145,10 +145,11 @@
   </div>
 </template>
 
-<div class="md-form mt-5 pb-5">
+<div class="form-group shadow-textarea mt-5 pb-5">
   <strong>タイトル</strong>
   <strong class="text-danger">必須</strong>
-  <input type="title" name="title" class="form-control" placeholder="100文字以内" required value="{{ $article->title ?? old('title') }}">
+  <!-- <input type="text" name="title" class="form-control" placeholder="100文字以内" required value="{{ $article->title ?? old('title') }}">-->
+  <textarea name="title" id="title" cols="12" rows="2" class="form-control" placeholder="100文字以内" required>{{ $article->title ?? old('title')}}</textarea>
 </div>
 
 

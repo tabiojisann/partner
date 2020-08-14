@@ -24,9 +24,10 @@ class ArticleController extends Controller
         return view('articles.index', ['articles' => $articles, 'user' => $user]);
     }
 
-    public function create() 
+    public function create(User $user) 
     {
-        return view('articles.create');
+        $user = Auth::user();
+        return view('articles.create', ['user' => $user]);
     }
 
     public function store(ArticleRequest $request, Article $article)
@@ -79,10 +80,10 @@ class ArticleController extends Controller
         return redirect()->route('articles.index');
     }
 
-    public function show(Article $article)
+    public function show(Article $article, User $user)
     {
-        return view('articles.show', ['article' => $article]);
+        $user     = Auth::user();
+        return view('articles.show', ['article' => $article, 'user' => $user]);
     }
 
 }
-

@@ -4,13 +4,10 @@
 
 @section('content')
   @include('nav')
-  @auth
-    <p class="ml-auto">あなたは<span class="text-default">{{ $user->name }}</span>です</p>
-    <a href="{{ route('users.show', ['user' => $user]) }}">{{ $user->name }}</a>
-  @endauth
+
   @guest
     <div class="text-center peach-gradient" style="height: 500px;">
-      <img src="https://s3.amazonaws.com/lg-vectors/bitmaps/206127/721602.png?logo_version=0" width="500" border="0" class="horizontal animated fadeInRight slow">
+      <img src="https://s3.amazonaws.com/lg-vectors/bitmaps/206127/721602.png?logo_version=0" width="500" border="0" class="horizontal animated fadeInRight slower">
       <h1 class="text-white mt-5 animated fadeInLeft slower">俺とコンビ組まない?</h1>
       <a href="{{ route('register') }}">
         <h2 class="text-success mt-4 animated fadeIn delay-4s">はい</h2>
@@ -21,7 +18,7 @@
 
  
 
-  <div class="row blue-grey lighten-5">
+  <div class="row  lime lighten-5">
     <div class="card border-light col-3 offset-1 my-5" style="max-height: 440px;">
       <p class="card-header">検索</p>
       <div class="card-body">
@@ -50,7 +47,7 @@
 
     <div class="col-6 offset-1 pb-5">
       @foreach($articles as $article)
-        <div class="card mt-5 animated fadeIn">
+        <div class="card mt-5 animated fadeIn slower">
 
 
           <div class="view overlay">
@@ -63,21 +60,41 @@
           </div>
 
           <div class="card-body">
+            
+         
+              <div class="float-right">
+           
+                <p class="ml-4">
+                  <img src="{{ $article->user->image }}"  height="40" width="45" class="rounded-circle"  alt="">
+                </p>
+                <p>{{ $article->user->name }}</p>
+              </div>
+        
+                  
 
             <h3 class="card-title">{{ $article->title }}</h3>
 
-            <table class="table  table-bordered table-hover">
-              <tr>
-                <th class=>ポジション</th>
-                <th>{{ $article->position }}</th>
-              </tr>
-              <tr>
-                <th class="">スタイル</th>
-                <th>{{ $article->style }}</th>
-              </tr>
-            </table>
+            <table class="table table-bordered">
+              <tbody>
 
-            <p class="card-text">{{ $article->text }}</p>
+                <tr>
+                  <th style="width:20%" class="blue-grey lighten-5 text-left">
+                    <i class="fas fa-map-marker-alt text-info" class=""></i>
+                      募集ポジション
+                  </th>
+                  <th style="width:50%" class="text-left">{{ $article->position }}</th>
+                </tr>
+
+                <tr>
+                  <th style="width:20%" class="blue-grey lighten-5 text-left">
+                    <i class="fas fa-briefcase text-default"></i>
+                      募集スタイル
+                  </th>
+                  <th style="width:50%" class="text-left">{{ $article->style }}</th>
+                </tr>
+
+              </tbody>
+            </table>
 
               @if( Auth::id() === $article->user_id )
                 <form method="POST" action="{{ route('articles.destroy', ['article' => $article]) }}">

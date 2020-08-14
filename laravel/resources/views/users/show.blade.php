@@ -4,7 +4,7 @@
 
 @section('content')
   @include('nav')
-    <div class="container mt-5 mb-5 " style="max-width: 100%;">
+    <div class="container lime lighten-5" style="max-width: 100%;">
       @if( Auth::id() === $user->id )
         <a href="{{ route('users.edit', ['user' => $user]) }}" class="btn btn-primary">編集</a>
       @endif
@@ -104,20 +104,17 @@
           </table>
         </div>
       </div>
+    </div> 
 
-      <div class="row">
+    <div class="container mb-5 " style="max-width: 100%;">
+      <div class="row border-top">
         <div class="col-8 offset-2 mt-5">
-          <div class="card">
-            <div class="card-body">
-              <div class="card-text">
-                {!! nl2br(e($user->PR)) !!}
-              </div>
-            </div>
+          <div class="text">
+            {!! nl2br(e($user->PR)) !!}
           </div>
         </div>
       </div>
-
-    </div> 
+    </div>
   @include('footer')
 @endsection
 
