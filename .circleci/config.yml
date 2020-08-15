@@ -5,13 +5,13 @@ jobs:
       - image: circleci/php:7.3-node-browsers
     steps:
       - checkout 
-      - run: cd /home/circleci/project/laravel
-      - run: composer install -n --prefer-dist
-      - run: npm ci
-      - run: npm run dev
-      - run: 
-         name: テスト
-         command: vendor/bin/phpunit
+      - run: ls
+      # - run: composer install -n --prefer-dist
+      # - run: npm ci
+      # - run: npm run dev
+      # - run: 
+      #    name: テスト
+      #    command: vendor/bin/phpunit
 
 
 
