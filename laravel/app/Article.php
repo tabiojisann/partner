@@ -16,8 +16,17 @@ class Article extends Model
         'image',
     ];
 
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
+      
+    
+
     public function user(): BelongsTo
     {
         return $this->belongsTo('App\User');
     }
+
+
 }

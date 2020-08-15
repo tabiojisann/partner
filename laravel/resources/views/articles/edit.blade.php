@@ -3,6 +3,7 @@
 @section('title', '記事更新')
 
 @section('content')
+@include('nav')
   <div class="container">
     <div class="row">
       <div class="col-12">

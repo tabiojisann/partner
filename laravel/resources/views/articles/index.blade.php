@@ -5,6 +5,8 @@
 @section('content')
   @include('nav')
 
+
+
   @guest
     <div class="text-center peach-gradient" style="height: 500px;">
       <img src="https://s3.amazonaws.com/lg-vectors/bitmaps/206127/721602.png?logo_version=0" width="500" border="0" class="horizontal animated fadeInRight slower">
@@ -14,8 +16,6 @@
       </a>
     </div>
   @endguest
-  
-
  
 
   <div class="row  lime lighten-5">
@@ -45,10 +45,60 @@
       </div>
     </div>
 
+    <!-- 記事一覧 -->
+
     <div class="col-6 offset-1 pb-5">
       @foreach($articles as $article)
-        <div class="card mt-5 animated fadeIn slower">
+        <div class="card mt-5">
+        
 
+        @if(Auth::id() === $article->user_id)
+          <h2 class="text-right mr-3">
+            <a href="{{ route('articles.edit', ['article' => $article]) }}" class="">
+              <i class="fas fa-edit text-primary"></i>
+            </a>
+
+            <!--  Modal Trigger-->
+            <a type="button" class="text-danger" data-toggle="modal" data-target="#sideModalTR">
+              <i class="fas fa-trash-alt text-danger"></i>
+            </a>
+            <!--  Modal Trigger-->
+          </h2>
+
+          <!-- Modal -->
+          <div class="modal fade right" id="sideModalTR" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"aria-hidden="true">
+
+            
+            <div class="modal-dialog modal-side modal-top-right" role="document">
+
+            <form method="POST" action="{{ route('articles.destroy', ['article' => $article]) }}">
+              @csrf
+              @method('DELETE')
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  この記事を削除します。本当によろしいですか？
+                </div>
+                <div class="modal-footer justify-content-between">
+                  <button type="button" class="btn btn-outline-primary waves-effect" data-dismiss="modal">いいえ</button>
+                  <button type="submit" class="btn btn-danger">はい</button>
+                </div>
+              </div>
+            </form>
+            
+            </div>
+          </div>
+          <!-- Modal -->
+
+        @endif
+
+         
+
+    
 
           <div class="view overlay">
             @if(isset($article->image))
@@ -60,14 +110,21 @@
           </div>
 
           <div class="card-body">
+
+          
             
-         
               <div class="float-right">
            
                 <p class="ml-4">
                   <img src="{{ $article->user->image }}"  height="40" width="45" class="rounded-circle"  alt="">
                 </p>
-                <p>{{ $article->user->name }}</p>
+
+                @if(Auth::id() === $article->user_id)
+                  <p class="text-danger">{{ $article->user->name }}</p>
+                @else
+                  <p class="text-info">{{ $article->user->name }}</p>
+                @endif  
+
               </div>
         
                   
@@ -96,21 +153,24 @@
               </tbody>
             </table>
 
-              @if( Auth::id() === $article->user_id )
-                <form method="POST" action="{{ route('articles.destroy', ['article' => $article]) }}">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit" class="btn btn-danger">削除</button>
-                </form>
-                <a href="{{ route('articles.edit', ['article' => $article]) }}" class="btn btn-primary">編集</a>
 
-              @endif
+
+            <button type="button" class="btn btn-success px-5"><i class="fas fa-star text-warning mr-1"></i>気になる</button>
+            <a href="{{ route('articles.show', ['article' => $article]) }}" class="btn btn-mdb-color px-5">
+              <i class="fas fa-align-justify text-info">   </i>  詳細
+            </a>
+
+            <p class="float-right mt-4">{{ $article->created_at->format('Y年 n月 j日 / H:i') }}</p>
 
           </div>
         </div>
       @endforeach
+
+      
     </div>
   </div>
+
+
 
   @include('footer')
 

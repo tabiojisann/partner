@@ -57,4 +57,10 @@ class User extends Authenticatable
         'updated_at',
         'birthday'
     ];
+
+    public function article(): hasMany
+    {
+        return $this->hasMany('App\Article');
+    }
+
 }

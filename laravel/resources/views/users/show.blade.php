@@ -4,27 +4,32 @@
 
 @section('content')
   @include('nav')
-    <div class="container lime lighten-5" style="max-width: 100%;">
-      @if( Auth::id() === $user->id )
-        <a href="{{ route('users.edit', ['user' => $user]) }}" class="btn btn-primary">編集</a>
-      @endif
+    <div class="container rgba-grey-slight" style="max-width: 100%;">
+   
       <div class="row">
 
 
-        <div class="col-5 offset-1">
+        <div class="col-5 offset-1 mt-5">
           <div class="view overlay">
-            @if(isset($user->image))
-              <img class="card-img-top" src="{{ $user->image }}" alt="">
-            @endif
+          @if(isset($user->image))
+            <img class="card-img-top" src="{{ $user->image }}"  alt="photo">
+          @else
+            <img src="{{ asset('logo/NoImage.jpg') }}" width="400" alt="">
+          @endif
             <div class="mask rgba-white-slight"></div>
           </div>
         </div>
 
-        <div class="col-4 offset-1">
+        <div class="col-4 offset-1 mt-5">
 
           <div class="name pb-5">
-            <h1>{{ $user->name }}</h1>
-            <p>{{ $user->name }}</p>
+            <h1 class="d-inline">{{ $user->name }}</h1>
+
+            @if( Auth::id() === $user->id )
+              <a href="{{ route('users.edit', ['user' => $user]) }}" class="h3 ml-3"><i class="fas fa-edit text-primary"></i></a>
+            @endif
+
+            <p class="ml-2">{{ $user->name }}</p>
           </div>
 
           <table class="table">

@@ -50,9 +50,12 @@ class ArticleController extends Controller
         return redirect()->route('articles.index');
     }
 
-    public function edit(Article $article)
-    {
-        return view('articles.edit', ['article' => $article]);
+    public function edit(Article $article, User $user)
+    {  
+        
+        $user = Auth::user();
+
+        return view('articles.edit', ['article' => $article, 'user' => $user]);
     }
 
     public function update(ArticleRequest $request, Article $article)

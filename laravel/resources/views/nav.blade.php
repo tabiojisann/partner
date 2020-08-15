@@ -1,5 +1,5 @@
 
-  <nav class="navbar navbar-dark blue gradient overlay sticky-top">
+  <nav class="navbar navbar-dark overlay sticky-top">
 
   
     <div class="row">
@@ -35,11 +35,11 @@
         <a href="{{ route('articles.create') }}">
           <button type="button" class="btn btn-outline-default waves-effect">
             
-          <span class="text-info font-weight-bold">募集をかける</span>
+          <span class="text-primary font-weight-bold">募集をかける</span>
           </button>
         </a>
         <button form="logout-button" class="btn btn-outline-default waves-effect" type="submit">
-          <span class="text-info font-weight-bold">ログアウト</span>
+          <span class="text-primary font-weight-bold">ログアウト</span>
         </button>
         <form id="logout-button" method="POST" action="{{ route('logout') }}">
           @csrf
