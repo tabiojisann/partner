@@ -3,16 +3,15 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.3-node-browsers
+    working_directory: ~/works/partner
     steps:
       - checkout 
-      - run: pwd && ls
-      - run: cd laravel && pwd && ls
-      - run: pwd && composer install -n --prefer-dist
-      # - run: npm ci
-      # - run: npm run dev
-      # - run: 
-      #    name: テスト
-      #    command: vendor/bin/phpunit
+      - run: cd laravel && composer install -n --prefer-dist
+      - run: npm ci
+      - run: npm run dev
+      - run: 
+         name: テスト
+         command: vendor/bin/phpunit
 
 
 
