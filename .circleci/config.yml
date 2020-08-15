@@ -7,13 +7,12 @@ jobs:
       - checkout 
       - run: pwd && ls
       - run: cd laravel && pwd && ls
-      # - run: composer install -n --prefer-dist
+      - run: composer install -n --prefer-dist
       # - run: npm ci
       # - run: npm run dev
       # - run: 
       #    name: テスト
       #    command: vendor/bin/phpunit
-
 
 
 
