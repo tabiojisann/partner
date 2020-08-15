@@ -5,8 +5,7 @@ jobs:
       - image: circleci/php:7.3-node-browsers
     steps:
       - checkout 
-      - run: 
-         command: cd laravel
+      - run: cd /home/circleci/project/laravel
       - run: composer install -n --prefer-dist
       - run: npm ci
       - run: npm run dev
