@@ -1,10 +1,31 @@
-version: 2.1
-commands:
-  sayhello:
-    description: "簡単なコマンド"
-    parameters:
-      to:
-        type: string
-        default: "hell0 world"
-    steps:
-      - run: echo << parameters.to >>
+workflows:
+version: 2
+  build-deploy:
+    jobs:
+      - build:
+      - test:
+        requires:
+          - build
+        filters:
+          branches:
+            only: master
+
+
+
+
+
+
+#テストの自動化
+  ## 実行環境を選択
+  ## コンテナ内に各種必要なパッケージインストール
+  ## コマンド /vendortests/phpunit 実行 
+
+#デプロイの自動化
+
+
+
+
+
+
+
+
