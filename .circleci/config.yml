@@ -7,7 +7,7 @@ jobs:
       - checkout 
       - run: pwd && ls
       - run: cd laravel && pwd && ls
-      - run: composer install -n --prefer-dist
+      - run: pwd && composer install -n --prefer-dist
       # - run: npm ci
       # - run: npm run dev
       # - run: 
